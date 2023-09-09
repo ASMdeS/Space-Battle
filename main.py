@@ -23,15 +23,17 @@ class Botao():
 
 pygame.init()
 screen = pygame.display.set_mode((600, 640))
-menu = pygame.image.load('Projeto_P1_aaef/images/menu.png')
+menu = pygame.image.load('images/menu.png')
+musica_de_fundo = pygame.mixer.music.load('sounds/CXR ATK - Dimensions.mp3')
+pygame.mixer.music.play(-1)
 
 # FUNÇÃO QUE MOSTRA O MENU PRINCIPAL
 def menu_principal():
     while True:
         pygame.display.set_caption('Menu Principal')
         # CRIAÇÃO DOS BOTÕES
-        botao_jogar = Botao('Projeto_P1_aaef/images/play_button.png', 195, 330)
-        botao_sair = Botao('Projeto_P1_aaef/images/leave_button.png', 195, 455)
+        botao_jogar = Botao('images/play_button.png', 195, 330)
+        botao_sair = Botao('images/leave_button.png', 195, 455)
         botao_jogar.mostrar_botao(screen)
         botao_sair.mostrar_botao(screen)
 
