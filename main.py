@@ -77,7 +77,7 @@ class Player():
         if self.quadrado.bottom>640:
             self.quadrado.bottom=640
 
-    def draw(self, screen):
+    def mostrar_player(self, screen):
         """
         Método de desenhar bala,pontuacao, player e a vida
         """
@@ -146,6 +146,7 @@ def menu_principal():
 
 
 def jogar():
+    mapa_background = pygame.image.load('images/map_background.png')
     player1 = Player('images/nave_1.png', 260, 530, pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d, pygame.K_f )
     player2 = Player('images/nave_2.png', 260, 70, pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT, pygame.K_RCTRL )
     
@@ -157,14 +158,11 @@ def jogar():
 
         player1.movimento(pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d)
         player2.movimento(pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT)
-        screen.fill((0, 0, 0))
 
-        player1.draw(screen)
-        player2.draw(screen)
-
-        
+        player1.mostrar_player(screen)
+        player2.mostrar_player(screen)
 
         pygame.display.update()
-
+        screen.blit(mapa_background, (0, 0))
 
 menu_principal()
