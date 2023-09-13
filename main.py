@@ -38,7 +38,7 @@ class Player():
         self.tecla_esquerda = tecla_esquerda
         self.tecla_direita = tecla_direita
         self.tecla_tiro = tecla_tiro
-        self.velocidade = 10
+        self.velocidade = 1
 
     def movimento(self, tecla_cima, tecla_baixo, tecla_esquerda,tecla_direita):
         self.tecla_cima = tecla_cima
