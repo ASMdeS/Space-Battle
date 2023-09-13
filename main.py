@@ -52,7 +52,6 @@ class Player():
         #essa funcao muda o atributo direcao do jogador
         #a partir da tecla que foi usada
         if keys[self.tecla_esquerda]:
-            #
             self.direcao = "esquerda"
             self.quadrado.x -= self.velocidade
 
@@ -76,6 +75,11 @@ class Player():
             self.quadrado.y=0
         if self.quadrado.bottom>640:
             self.quadrado.bottom=640
+        if self.quadrado.x<0:
+            self.quadrado.x=0
+        if self.quadrado.x>568:
+            self.quadrado.x=568
+
 
     def mostrar_player(self, screen):
         """
@@ -83,37 +87,12 @@ class Player():
         """
         screen.blit(self.imagem, self.rect)
 
-
 pygame.init()
 screen = pygame.display.set_mode((600, 640))
 menu = pygame.image.load('images/menu.png')
 musica_de_fundo = pygame.mixer.music.load('sounds/CXR ATK - Dimensions.mp3')
 pygame.mixer.music.play(-1)
 clock = pygame.time.Clock()
-
-# # Player 1
-# playerwhite_Img = pygame.image.load('images/nave_1.png')
-# playerwhite_X = 284
-# playerwhite_Y = 50
-# playerwhiteX_change = 0
-# playerwhiteY_change = 0
-
-
-# def player_white(x, y):
-#     screen.blit(playerwhite_Img, (x, y))
-
-
-# # Player 2
-# playerred_Img = pygame.image.load('images/nave_2.png')
-# playerred_X = 284
-# playerred_Y = 558
-# playerredX_change = 0
-# playerredY_change = 0
-
-
-# def player_red(x, y):
-#     screen.blit(playerred_Img, (x, y))
-
 
 # FUNÇÃO QUE MOSTRA O MENU PRINCIPAL
 def menu_principal():
