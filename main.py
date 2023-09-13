@@ -48,6 +48,7 @@ class Player():
 
         keys = pygame.key.get_pressed()
 
+        delta_time = clock.tick(60)
         #além de movimentar o jogador
         #essa funcao muda o atributo direcao do jogador
         #a partir da tecla que foi usada
@@ -97,7 +98,6 @@ clock = pygame.time.Clock()
 # FUNÇÃO QUE MOSTRA O MENU PRINCIPAL
 def menu_principal():
     while True:
-        clock.tick(30) 
         pygame.display.set_caption('Menu Principal')
         # CRIAÇÃO DOS BOTÕES
         botao_jogar = Botao('images/play_button.png', 195, 330)
