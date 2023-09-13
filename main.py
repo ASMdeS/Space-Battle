@@ -10,6 +10,18 @@ menu = pygame.image.load('images/menu.png')
 musica_de_fundo = pygame.mixer.music.load('sounds/CXR ATK - Dimensions.mp3')
 pygame.mixer.music.play(-1)
 
+class Obstaculo():
+    def __init__(self, imagem, x, y):
+        self.imagem = pygame.image.load(imagem)
+        img = self.imagem
+        self.x = x
+        self.y = y
+        self.retangulo = pygame.Rect(x, y, img.get_width(), img.get_height())
+
+
+    def mostrar_obstaculo(self, screen):
+        screen.blit(self.imagem, self.retangulo)
+
 
 # FUNÇÃO QUE MOSTRA O MENU PRINCIPAL
 def menu_principal():
@@ -46,6 +58,8 @@ def jogar():
     player2 = Player('images/nave_2.png', 260, 70, pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT,
                      pygame.K_RCTRL)
 
+    obstaculo1 = Obstaculo('images/obstaculo-1.png', 268, 140)
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -57,6 +71,8 @@ def jogar():
 
         player1.mostrar_player(screen)
         player2.mostrar_player(screen)
+
+        obstaculo1.mostrar_obstaculo(screen)
 
         pygame.display.update()
         screen.blit(mapa_background, (0, 0))
