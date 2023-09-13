@@ -1,5 +1,7 @@
 import pygame
+
 pygame.init()
+
 
 class Botao():
     # CONSTRUTOR DA CLASSE

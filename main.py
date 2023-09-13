@@ -10,6 +10,7 @@ menu = pygame.image.load('images/menu.png')
 musica_de_fundo = pygame.mixer.music.load('sounds/CXR ATK - Dimensions.mp3')
 pygame.mixer.music.play(-1)
 
+
 # FUNÇÃO QUE MOSTRA O MENU PRINCIPAL
 def menu_principal():
     while True:
@@ -41,9 +42,10 @@ def menu_principal():
 
 def jogar():
     mapa_background = pygame.image.load('images/map_background.png')
-    player1 = Player('images/nave_1.png', 260, 530, pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d, pygame.K_f )
-    player2 = Player('images/nave_2.png', 260, 70, pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT, pygame.K_RCTRL )
-    
+    player1 = Player('images/nave_1.png', 260, 530, pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d, pygame.K_f)
+    player2 = Player('images/nave_2.png', 260, 70, pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT,
+                     pygame.K_RCTRL)
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -58,5 +60,6 @@ def jogar():
 
         pygame.display.update()
         screen.blit(mapa_background, (0, 0))
+
 
 menu_principal()
