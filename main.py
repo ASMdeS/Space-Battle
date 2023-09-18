@@ -4,6 +4,8 @@ from sys import exit
 from Player import *
 from Botao import *
 from Obstaculo import *
+from Coletaveis import * 
+import random
 
 pygame.init()
 screen = pygame.display.set_mode((600, 640))
@@ -45,7 +47,7 @@ def jogar():
     player1 = Player('images/nave_1.png', 260, 530, pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d, pygame.K_f)
     player2 = Player('images/nave_2.png', 260, 70, pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT,
                      pygame.K_RCTRL)
-    
+
 
     obstaculo1 = Obstaculo('images/obstaculo-1.png', 500, 280)
     obstaculo2 = Obstaculo('images/obstaculo-2.png', 450, 60)
@@ -54,12 +56,16 @@ def jogar():
     obstaculo4_2 = Obstaculo('images/obstaculo-4.png', 168, 100)
     obstaculo3 = Obstaculo('images/obstaculo-3.png', 284, 324)
 
+    gerenciador_itens = GerenciadorItensColecionaveis()
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
+        
+        if random.random() < 0.009:  # Ajuste a probabilidade conforme necessário
+            gerenciador_itens.gerar_item()
 
         player1.movimento(pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d)
         player2.movimento(pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT)
@@ -73,6 +79,12 @@ def jogar():
         obstaculo4_1.mostrar_obstaculo(screen)
         obstaculo4_2.mostrar_obstaculo(screen)
         obstaculo3.mostrar_obstaculo(screen)
+
+        itens_colecionados = pygame.sprite.spritecollide(player1, gerenciador_itens.itens, True)
+        itens_colecionados = pygame.sprite.spritecollide(player1, gerenciador_itens.itens, True)
+        
+        gerenciador_itens.itens.update()
+        gerenciador_itens.itens.draw(screen)
 
         pygame.display.update()
         screen.blit(mapa_background, (0, 0))
