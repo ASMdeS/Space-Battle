@@ -12,6 +12,9 @@ screen = pygame.display.set_mode((600, 640))
 menu = pygame.image.load('images/menu.png')
 musica_de_fundo = pygame.mixer.music.load('sounds/CXR ATK - Dimensions.mp3')
 pygame.mixer.music.play(-1)
+fonte = pygame.font.SysFont('arial', 30, True, True)
+vidas_p1 = 6
+vidas_p2 = 6
 
 # FUNÇÃO QUE MOSTRA O MENU PRINCIPAL
 def menu_principal():
@@ -48,17 +51,15 @@ def jogar():
     player2 = Player('images/nave_2.png', 260, 70, pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT,
                      pygame.K_RCTRL)
 
-
-    obstaculo1 = Obstaculo('images/obstaculo-1.png', 500, 280)
-    obstaculo2 = Obstaculo('images/obstaculo-2.png', 450, 60)
-    obstaculo2_2 = Obstaculo('images/obstaculo-2.png', 100, 410)
-    obstaculo4_1 = Obstaculo('images/obstaculo-4.png', 368, 500)
-    obstaculo4_2 = Obstaculo('images/obstaculo-4.png', 168, 100)
-    obstaculo3 = Obstaculo('images/obstaculo-3.png', 284, 324)
+    lista_obstaculos = gerar_lista_obstaculos()
 
     gerenciador_itens = GerenciadorItensColecionaveis()
-
     while True:
+        mensagem_1 = f'Vidas: {vidas_p1}'
+        mensagem_2 = f'Vidas: {vidas_p2}'
+        texto_formatado_1 = fonte.render(mensagem_1, False, (255,255,255))
+        texto_formatado_2 = fonte.render(mensagem_2, False, (255,255,255))
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -67,22 +68,22 @@ def jogar():
         if random.random() < 0.009:  # Ajuste a probabilidade conforme necessário
             gerenciador_itens.gerar_item()
 
-        player1.movimento(pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d)
-        player2.movimento(pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT)
+        player1.movimento(pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d, lista_obstaculos)
+        player2.movimento(pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT, lista_obstaculos)
 
         player1.mostrar_player(screen)
         player2.mostrar_player(screen)
 
-        obstaculo1.mostrar_obstaculo(screen)
-        obstaculo2.mostrar_obstaculo(screen)
-        obstaculo2_2.mostrar_obstaculo(screen)
-        obstaculo4_1.mostrar_obstaculo(screen)
-        obstaculo4_2.mostrar_obstaculo(screen)
-        obstaculo3.mostrar_obstaculo(screen)
-
+        
         itens_colecionados = pygame.sprite.spritecollide(player1, gerenciador_itens.itens, True)
         itens_colecionados = pygame.sprite.spritecollide(player1, gerenciador_itens.itens, True)
         
+
+        for obstaculo in lista_obstaculos:
+            obstaculo.mostrar_obstaculo(screen)
+
+        screen.blit(texto_formatado_1,(30,40))
+        screen.blit(texto_formatado_2, (30,570))
         gerenciador_itens.itens.update()
         gerenciador_itens.itens.draw(screen)
 
