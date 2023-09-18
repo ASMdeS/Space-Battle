@@ -10,6 +10,9 @@ screen = pygame.display.set_mode((600, 640))
 menu = pygame.image.load('images/menu.png')
 musica_de_fundo = pygame.mixer.music.load('sounds/CXR ATK - Dimensions.mp3')
 pygame.mixer.music.play(-1)
+fonte = pygame.font.SysFont('arial', 30, True, True)
+vidas_p1 = 6
+vidas_p2 = 6
 
 # FUNÇÃO QUE MOSTRA O MENU PRINCIPAL
 def menu_principal():
@@ -55,7 +58,12 @@ def jogar():
     obstaculo3 = Obstaculo('images/obstaculo-3.png', 284, 324)
 
 
+
     while True:
+        mensagem_1 = f'Vidas: {vidas_p1}'
+        mensagem_2 = f'Vidas: {vidas_p2}'
+        texto_formatado_1 = fonte.render(mensagem_1, False, (255,255,255))
+        texto_formatado_2 = fonte.render(mensagem_2, False, (255,255,255))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -74,6 +82,8 @@ def jogar():
         obstaculo4_2.mostrar_obstaculo(screen)
         obstaculo3.mostrar_obstaculo(screen)
 
+        screen.blit(texto_formatado_1,(30,40))
+        screen.blit(texto_formatado_2, (30,570))
         pygame.display.update()
         screen.blit(mapa_background, (0, 0))
 
