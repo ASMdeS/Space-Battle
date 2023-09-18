@@ -8,7 +8,7 @@ class Player():
     def __init__(self, imagem, x, y, tecla_cima, tecla_baixo, tecla_esquerda, tecla_direita, tecla_tiro):
         self.x = x
         self.y = y
-        self.quadrado = pygame.Rect(x, y, 30, 30)
+        self.quadrado = pygame.Rect(x, y, 32, 32)
         self.rect = self.quadrado
         self.imagem_original = pygame.image.load(imagem)
         self.imagem = self.imagem_original
@@ -24,11 +24,13 @@ class Player():
         # Rotaciona a imagem atual do jogador
         self.imagem = pygame.transform.rotate(self.imagem_original, angle)
 
-    def movimento(self, tecla_cima, tecla_baixo, tecla_esquerda, tecla_direita):
+    def movimento(self, tecla_cima, tecla_baixo, tecla_esquerda, tecla_direita, lista_obst):
         self.tecla_cima = tecla_cima
         self.tecla_baixo = tecla_baixo
         self.tecla_esquerda = tecla_esquerda
         self.tecla_direita = tecla_direita
+
+        old_position = self.rect.copy()
 
         keys = pygame.key.get_pressed()
 
@@ -66,8 +68,21 @@ class Player():
         if self.quadrado.x > 568:
             self.quadrado.x = 568
 
+        for obstaculo in lista_obst:
+            if self.rect.colliderect(obstaculo.retangulo):
+                if keys[tecla_esquerda]:
+                    self.rect.left = old_position.left
+                if keys[tecla_direita]:
+                    self.rect.right = old_position.right
+                if keys[tecla_cima]:
+                    self.rect.top = old_position.top
+                if keys[tecla_baixo]:
+                    self.rect.bottom = old_position.bottom
+
+    def colisao(self, obj):
+        if self.rect.colliderect(obj):
+            return True
+        return False
+
     def mostrar_player(self, screen):
-        """
-        Método de desenhar bala,pontuacao, player e a vida
-        """
         screen.blit(self.imagem, self.rect)
