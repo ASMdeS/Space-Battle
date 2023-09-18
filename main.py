@@ -3,25 +3,13 @@ from pygame.locals import *
 from sys import exit
 from Player import *
 from Botao import *
+from Obstaculo import *
 
 pygame.init()
 screen = pygame.display.set_mode((600, 640))
 menu = pygame.image.load('images/menu.png')
 musica_de_fundo = pygame.mixer.music.load('sounds/CXR ATK - Dimensions.mp3')
 pygame.mixer.music.play(-1)
-
-class Obstaculo():
-    def __init__(self, imagem, x, y):
-        self.imagem = pygame.image.load(imagem)
-        img = self.imagem
-        self.x = x
-        self.y = y
-        self.retangulo = pygame.Rect(x, y, img.get_width(), img.get_height())
-
-
-    def mostrar_obstaculo(self, screen):
-        screen.blit(self.imagem, self.retangulo)
-
 
 # FUNÇÃO QUE MOSTRA O MENU PRINCIPAL
 def menu_principal():
@@ -57,8 +45,15 @@ def jogar():
     player1 = Player('images/nave_1.png', 260, 530, pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d, pygame.K_f)
     player2 = Player('images/nave_2.png', 260, 70, pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT,
                      pygame.K_RCTRL)
+    
 
-    obstaculo1 = Obstaculo('images/obstaculo-1.png', 268, 140)
+    obstaculo1 = Obstaculo('images/obstaculo-1.png', 500, 280)
+    obstaculo2 = Obstaculo('images/obstaculo-2.png', 450, 60)
+    obstaculo2_2 = Obstaculo('images/obstaculo-2.png', 100, 410)
+    obstaculo4_1 = Obstaculo('images/obstaculo-4.png', 368, 500)
+    obstaculo4_2 = Obstaculo('images/obstaculo-4.png', 168, 100)
+    obstaculo3 = Obstaculo('images/obstaculo-3.png', 284, 324)
+
 
     while True:
         for event in pygame.event.get():
@@ -73,6 +68,11 @@ def jogar():
         player2.mostrar_player(screen)
 
         obstaculo1.mostrar_obstaculo(screen)
+        obstaculo2.mostrar_obstaculo(screen)
+        obstaculo2_2.mostrar_obstaculo(screen)
+        obstaculo4_1.mostrar_obstaculo(screen)
+        obstaculo4_2.mostrar_obstaculo(screen)
+        obstaculo3.mostrar_obstaculo(screen)
 
         pygame.display.update()
         screen.blit(mapa_background, (0, 0))
