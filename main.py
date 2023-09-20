@@ -4,7 +4,7 @@ from sys import exit
 from Player import *
 from Botao import *
 from Obstaculo import *
-from Coletaveis import * 
+from Coletaveis import *
 import random
 
 pygame.init()
@@ -15,6 +15,7 @@ pygame.mixer.music.play(-1)
 fonte = pygame.font.SysFont('arial', 30, True, True)
 vidas_p1 = 6
 vidas_p2 = 6
+
 
 # FUNÇÃO QUE MOSTRA O MENU PRINCIPAL
 def menu_principal():
@@ -55,16 +56,20 @@ def jogar():
 
     gerenciador_itens = GerenciadorItensColecionaveis()
     while True:
+        # Clock
+        clock = pygame.time.Clock()
+        delta_time = clock.tick(60)
+
         mensagem_1 = f'Vidas: {vidas_p1}'
         mensagem_2 = f'Vidas: {vidas_p2}'
-        texto_formatado_1 = fonte.render(mensagem_1, False, (255,255,255))
-        texto_formatado_2 = fonte.render(mensagem_2, False, (255,255,255))
+        texto_formatado_1 = fonte.render(mensagem_1, False, (255, 255, 255))
+        texto_formatado_2 = fonte.render(mensagem_2, False, (255, 255, 255))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
-        
+
         if random.random() < 0.009:  # Ajuste a probabilidade conforme necessário
             gerenciador_itens.gerar_item()
 
@@ -74,16 +79,14 @@ def jogar():
         player1.mostrar_player(screen)
         player2.mostrar_player(screen)
 
-        
         itens_colecionados = pygame.sprite.spritecollide(player1, gerenciador_itens.itens, True)
         itens_colecionados = pygame.sprite.spritecollide(player1, gerenciador_itens.itens, True)
-        
 
         for obstaculo in lista_obstaculos:
             obstaculo.mostrar_obstaculo(screen)
 
-        screen.blit(texto_formatado_1,(30,40))
-        screen.blit(texto_formatado_2, (30,570))
+        screen.blit(texto_formatado_1, (30, 40))
+        screen.blit(texto_formatado_2, (30, 570))
         gerenciador_itens.itens.update()
         gerenciador_itens.itens.draw(screen)
 

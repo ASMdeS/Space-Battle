@@ -2,7 +2,6 @@ import pygame
 
 pygame.init()
 
-clock = pygame.time.Clock()
 
 class Player():
     def __init__(self, imagem, x, y, tecla_cima, tecla_baixo, tecla_esquerda, tecla_direita, tecla_tiro):
@@ -19,7 +18,7 @@ class Player():
         self.tecla_tiro = tecla_tiro
         self.velocidade = 10
         self.direcao = "parado"
-    
+
     def rotacionar_imagem(self, angle):
         # Rotaciona a imagem atual do jogador
         self.imagem = pygame.transform.rotate(self.imagem_original, angle)
@@ -31,10 +30,8 @@ class Player():
         self.tecla_direita = tecla_direita
 
         old_position = self.rect.copy()
-
         keys = pygame.key.get_pressed()
 
-        delta_time = clock.tick(60)
         # além de movimentar o jogador
         # essa funcao muda o atributo direcao do jogador
         # a partir da tecla que foi usada
