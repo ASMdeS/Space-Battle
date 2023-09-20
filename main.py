@@ -8,10 +8,16 @@ from Coletaveis import *
 import random
 
 pygame.init()
+# Icone do Jogo
+icone_jogo = pygame.image.load('images/menu.png')
+pygame.display.set_icon(icone_jogo)
+# Iniciar Tela
 screen = pygame.display.set_mode((600, 640))
 menu = pygame.image.load('images/menu.png')
+# Musica de Fundo
 musica_de_fundo = pygame.mixer.music.load('sounds/CXR ATK - Dimensions.mp3')
 pygame.mixer.music.play(-1)
+# Fonte
 fonte = pygame.font.SysFont('arial', 30, True, True)
 vidas_p1 = 6
 vidas_p2 = 6
@@ -46,7 +52,9 @@ def menu_principal():
         screen.blit(menu, (0, 0))
 
 
+# Função para jogar o Space Battle
 def jogar():
+    pygame.display.set_caption('Space Battle')
     mapa_background = pygame.image.load('images/map_background.png')
     player1 = Player('images/nave_1.png', 260, 530, pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d, pygame.K_f)
     player2 = Player('images/nave_2.png', 260, 70, pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT,
