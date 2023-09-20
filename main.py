@@ -76,7 +76,7 @@ def jogar():
 
         
         itens_colecionados = pygame.sprite.spritecollide(player1, gerenciador_itens.itens, True)
-        itens_colecionados = pygame.sprite.spritecollide(player1, gerenciador_itens.itens, True)
+        itens_colecionados = pygame.sprite.spritecollide(player2, gerenciador_itens.itens, True)
         
 
         for obstaculo in lista_obstaculos:
