@@ -8,10 +8,16 @@ from Coletaveis import *
 import random
 
 pygame.init()
+# Icone do Jogo
+icone_jogo = pygame.image.load('images/menu.png')
+pygame.display.set_icon(icone_jogo)
+# Iniciar Tela
 screen = pygame.display.set_mode((600, 640))
 menu = pygame.image.load('images/menu.png')
+# Musica de Fundo
 musica_de_fundo = pygame.mixer.music.load('sounds/CXR ATK - Dimensions.mp3')
 pygame.mixer.music.play(-1)
+# Fonte
 fonte = pygame.font.SysFont('arial', 30, True, True)
 vidas_p1 = 6
 vidas_p2 = 6
@@ -46,7 +52,9 @@ def menu_principal():
         screen.blit(menu, (0, 0))
 
 
+# Função para jogar o Space Battle
 def jogar():
+    pygame.display.set_caption('Space Battle')
     mapa_background = pygame.image.load('images/map_background.png')
     player1 = Player('images/nave_1.png', 260, 530, pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d, pygame.K_f)
     player2 = Player('images/nave_2.png', 260, 70, pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT, pygame.K_RCTRL)
@@ -61,8 +69,8 @@ def jogar():
 
         mensagem_1 = f'Vidas: {vidas_p1}'
         mensagem_2 = f'Vidas: {vidas_p2}'
-        texto_formatado_1 = fonte.render(mensagem_1, False, (255, 255, 255))
-        texto_formatado_2 = fonte.render(mensagem_2, False, (255, 255, 255))
+        imagem1 = pygame.image.load("images/life.png")
+        imagem = pygame.transform.scale(imagem1, (20, 20))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -80,13 +88,17 @@ def jogar():
 
         itens_colecionados = pygame.sprite.spritecollide(player1, gerenciador_itens.itens, True)
         itens_colecionados = pygame.sprite.spritecollide(player2, gerenciador_itens.itens, True)
-        
 
         for obstaculo in lista_obstaculos:
             obstaculo.mostrar_obstaculo(screen)
 
-        screen.blit(texto_formatado_1, (30, 40))
-        screen.blit(texto_formatado_2, (30, 570))
+        for i in range(int(vidas_p1)):
+            numero = i * 20
+            screen.blit(imagem, (30 + numero, 40))
+        for i in range(int(vidas_p2)):
+            numero = i * 20
+            screen.blit(imagem, (30 + numero, 570))
+
         gerenciador_itens.itens.update()
         gerenciador_itens.itens.draw(screen)
 
