@@ -70,8 +70,8 @@ def jogar():
 
         mensagem_1 = f'Vidas: {vidas_p1}'
         mensagem_2 = f'Vidas: {vidas_p2}'
-        texto_formatado_1 = fonte.render(mensagem_1, False, (255, 255, 255))
-        texto_formatado_2 = fonte.render(mensagem_2, False, (255, 255, 255))
+        imagem1 = pygame.image.load("images/life.png")
+        imagem = pygame.transform.scale(imagem1, (20, 20))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -89,13 +89,17 @@ def jogar():
 
         itens_colecionados = pygame.sprite.spritecollide(player1, gerenciador_itens.itens, True)
         itens_colecionados = pygame.sprite.spritecollide(player2, gerenciador_itens.itens, True)
-        
 
         for obstaculo in lista_obstaculos:
             obstaculo.mostrar_obstaculo(screen)
 
-        screen.blit(texto_formatado_1, (30, 40))
-        screen.blit(texto_formatado_2, (30, 570))
+        for i in range(int(vidas_p1)):
+            numero = i * 20
+            screen.blit(imagem, (30 + numero, 40))
+        for i in range(int(vidas_p2)):
+            numero = i * 20
+            screen.blit(imagem, (30 + numero, 570))
+
         gerenciador_itens.itens.update()
         gerenciador_itens.itens.draw(screen)
 
