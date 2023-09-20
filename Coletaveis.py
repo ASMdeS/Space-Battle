@@ -19,13 +19,18 @@ class GerenciadorItensColecionaveis:
         self.itens = pygame.sprite.Group()
 
     def gerar_item(self):
-        tipo_item = random.choice(["images/velocidade.png", "images/bala.png"])
-        valor_item = 0
+        # Verifique o número atual de itens colecionáveis na tela
+        num_itens_na_tela = len(self.itens)
 
-        if tipo_item == "images/velocidade.png":
-            valor_item = 10
-        elif tipo_item == "images/bala.png":
-            valor_item = 90
+        # Limite o número máximo de itens colecionáveis na tela a 8
+        if num_itens_na_tela < 8:
+            tipo_item = random.choice(["images/velocidade.png", "images/bala.png"])
+            valor_item = 0
 
-        novo_item = ItemColecionavel(tipo_item, valor_item)
-        self.itens.add(novo_item)
+            if tipo_item == "images/velocidade.png":
+                valor_item = 10
+            elif tipo_item == "images/bala.png":
+                valor_item = 90
+
+            novo_item = ItemColecionavel(tipo_item, valor_item)
+            self.itens.add(novo_item)
