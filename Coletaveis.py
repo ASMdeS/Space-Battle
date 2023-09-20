@@ -49,7 +49,7 @@ class ItemColecionavel(pygame.sprite.Sprite):
         self.image = pygame.image.load(imagem)  # Carregue a imagem do item
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(0, 600), random.randint(0, 640))
-        self.valor = valor  # Um valor pa
+        
 
     def update(self):
         # Você pode adicionar lógica adicional aqui se os itens colecionáveis precisarem ser atualizados
@@ -66,13 +66,9 @@ class GerenciadorItensColecionaveis:
 
         # Limite o número máximo de itens colecionáveis na tela a 8
         if num_itens_na_tela < 8:
-            tipo_item = random.choice(["images/velocidade.png", "images/bala.png"])
-            valor_item = 0
-
-            if tipo_item == "images/velocidade.png":
-                valor_item = 10
-            elif tipo_item == "images/bala.png":
-                valor_item = 90
-
-            novo_item = ItemColecionavel(tipo_item, valor_item)
+            probabilidades = [10,90]
+            tipos_itens = ["images/velocidade.png", "images/bala.png"]
+            tipo_item = random.choices(tipos_itens, weights=probabilidades)[0]
+         
+            novo_item = ItemColecionavel(tipo_item)
             self.itens.add(novo_item)
