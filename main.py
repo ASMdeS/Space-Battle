@@ -66,8 +66,8 @@ def jogar():
         clock = pygame.time.Clock()
         delta_time = clock.tick(30)
 
-        mensagem_1 = f'Vidas: {vidas_p1}'
-        mensagem_2 = f'Vidas: {vidas_p2}'
+        #mensagem_1 = f'Vidas: {vidas_p1}'
+        #mensagem_2 = f'Vidas: {vidas_p2}'
         imagem1 = pygame.image.load("images/life.png")
         imagem = pygame.transform.scale(imagem1, (20, 20))
 
@@ -96,6 +96,14 @@ def jogar():
                 if item.name == "images/velocidade.png":
                     if player2.velocidade < 20:
                         player2.velocidade += 5
+            if pygame.sprite.collide_rect(player1, item):
+                if item.name == "images/life.png":
+                    if player1.vidas < 6:
+                        player1.vidas += 1
+            if pygame.sprite.collide_rect(player2, item):
+                if item.name == "images/life.png":
+                    if player2.vidas < 6:
+                        player2.vidas += 1
 
         itens_colecionados = pygame.sprite.spritecollide(player1, gerenciador_itens.itens, True)
         itens_colecionados = pygame.sprite.spritecollide(player2, gerenciador_itens.itens, True)
@@ -103,10 +111,10 @@ def jogar():
         for obstaculo in lista_obstaculos:
             obstaculo.mostrar_obstaculo(screen)
 
-        for i in range(int(vidas_p1)):
+        for i in range(int(player1.vidas)):
             numero = i * 20
             screen.blit(imagem, (30 + numero, 40))
-        for i in range(int(vidas_p2)):
+        for i in range(int(player2.vidas)):
             numero = i * 20
             screen.blit(imagem, (30 + numero, 570))
 

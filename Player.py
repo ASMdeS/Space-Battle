@@ -18,6 +18,7 @@ class Player:
         self.tecla_tiro = tecla_tiro
         self.velocidade = 10
         self.direcao = "parado"
+        self.vidas = 5
 
     def rotacionar_imagem(self, angle):
         # Rotaciona a imagem atual do jogador
