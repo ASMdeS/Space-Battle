@@ -3,7 +3,7 @@ import pygame
 pygame.init()
 
 
-class Player():
+class Player:
     def __init__(self, imagem, x, y, tecla_cima, tecla_baixo, tecla_esquerda, tecla_direita, tecla_tiro):
         self.x = x
         self.y = y

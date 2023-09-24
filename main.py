@@ -58,7 +58,6 @@ def jogar():
     mapa_background = pygame.image.load('images/map_background.png')
     player1 = Player('images/nave_1.png', 260, 530, pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d, pygame.K_f)
     player2 = Player('images/nave_2.png', 260, 70, pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT, pygame.K_RCTRL)
-
     lista_obstaculos = gerar_lista_obstaculos()
 
     gerenciador_itens = GerenciadorItensColecionaveis()
@@ -85,6 +84,18 @@ def jogar():
 
         player1.mostrar_player(screen)
         player2.mostrar_player(screen)
+
+        #print(gerenciador_itens.itens)
+
+        for item in gerenciador_itens.itens:
+            if pygame.sprite.collide_rect(player1, item):
+                if item.name == "images/velocidade.png":
+                    if player1.velocidade < 20:
+                        player1.velocidade += 5
+            if pygame.sprite.collide_rect(player2, item):
+                if item.name == "images/velocidade.png":
+                    if player2.velocidade < 20:
+                        player2.velocidade += 5
 
         itens_colecionados = pygame.sprite.spritecollide(player1, gerenciador_itens.itens, True)
         itens_colecionados = pygame.sprite.spritecollide(player2, gerenciador_itens.itens, True)
