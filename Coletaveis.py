@@ -51,10 +51,10 @@ class ItemColecionavel(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(0, 600), random.randint(0, 640))
 
-
     def update(self):
         # Você pode adicionar lógica adicional aqui se os itens colecionáveis precisarem ser atualizados
         pass
+
 
 # Classe para gerenciar os itens colecionáveis
 class GerenciadorItensColecionaveis:

@@ -19,6 +19,7 @@ class Player:
         self.velocidade = 10
         self.direcao = "parado"
         self.vidas = 5
+        self.balas = 0
 
     def rotacionar_imagem(self, angle):
         # Rotaciona a imagem atual do jogador
@@ -77,6 +78,7 @@ class Player:
                 if keys[tecla_baixo]:
                     self.rect.bottom = old_position.bottom
 
+    # A Função Colisão não é chamada. Discutir se deve ser remvovida 25/09
     def colisao(self, obj):
         if self.rect.colliderect(obj):
             return True
