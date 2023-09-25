@@ -96,11 +96,11 @@ def jogar():
                     if player2.velocidade < 20:
                         player2.velocidade += 5
             if pygame.sprite.collide_rect(player1, item):
-                if item.name == "images/life.png":
+                if item.name == "images/coracao_coletavel.png":
                     if player1.vidas < 6:
                         player1.vidas += 1
             if pygame.sprite.collide_rect(player2, item):
-                if item.name == "images/life.png":
+                if item.name == "images/coracao_coletavel.png":
                     if player2.vidas < 6:
                         player2.vidas += 1
             if pygame.sprite.collide_rect(player1, item):
