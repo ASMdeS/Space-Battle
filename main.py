@@ -17,6 +17,14 @@ menu = pygame.image.load('images/menu.png')
 # Musica de Fundo
 musica_de_fundo = pygame.mixer.music.load('sounds/CXR ATK - Dimensions.mp3')
 pygame.mixer.music.play(-1)
+som_bala = pygame.mixer.Sound('sounds\smw_kick.wav')
+som_vida = pygame.mixer.Sound('sounds\smw_power-up.wav')
+som_velocidade = pygame.mixer.Sound('sounds\smw_hit_while_flying.wav')
+som_tiro = pygame.mixer.Sound('sounds\smw_blaster-firing.wav')
+som_gameover = pygame.mixer.Sound('sounds\game-over-arcade-6435.mp3')
+som_colisao = pygame.mixer.Sound('sounds\smw_thud.wav')
+som_inicio = pygame.mixer.Sound('sounds\smw_keyhole_exit.wav')
+
 # Fonte
 fonte = pygame.font.SysFont('arial', 30, True, True)
 
@@ -41,6 +49,7 @@ def menu_principal():
                 if botao_jogar.apertado(mouse_x, mouse_y, 330, 415):
                     # RODAR O JOGO
                     print('jogar')
+                    som_inicio.play()
                     jogar()
                 if botao_sair.apertado(mouse_x, mouse_y, 455, 540):
                     # FECHA A JANELA
@@ -90,26 +99,32 @@ def jogar():
             if pygame.sprite.collide_rect(player1, item):
                 if item.name == "images/velocidade.png":
                     if player1.velocidade < 20:
+                        som_velocidade.play()
                         player1.velocidade += 5
             if pygame.sprite.collide_rect(player2, item):
                 if item.name == "images/velocidade.png":
                     if player2.velocidade < 20:
+                        som_velocidade.play()
                         player2.velocidade += 5
             if pygame.sprite.collide_rect(player1, item):
                 if item.name == "images/coracao_coletavel.png":
                     if player1.vidas < 6:
+                        som_vida.play()
                         player1.vidas += 1
             if pygame.sprite.collide_rect(player2, item):
                 if item.name == "images/coracao_coletavel.png":
                     if player2.vidas < 6:
+                        som_vida.play()
                         player2.vidas += 1
             if pygame.sprite.collide_rect(player1, item):
                 if item.name == "images/bala.png":
                     if player1.balas < 6:
+                        som_bala.play()
                         player1.balas += 1
             if pygame.sprite.collide_rect(player2, item):
                 if item.name == "images/bala.png":
                     if player2.balas < 6:
+                        som_bala.play()
                         player2.balas += 1
 
         pygame.sprite.spritecollide(player1, gerenciador_itens.itens, True)
