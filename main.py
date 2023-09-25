@@ -66,10 +66,11 @@ def jogar():
         # Clock
         pygame.time.Clock().tick(30)
 
-        imagem_coracao = pygame.image.load("images/life.png")
+        imagem_coracao_vermelho = pygame.image.load("images/life.png")
+        imagem_coracao = pygame.image.load("images/coracao_coletavel.png")
         imagem_bala = pygame.image.load("images/bala.png")
         imagem_balaazul = pygame.image.load("images/bala_coletada.png")
-        imagem_coracaoreduzido = pygame.transform.scale(imagem_coracao, (20, 20))
+        imagem_coracaoreduzido = pygame.transform.scale(imagem_coracao_vermelho, (20, 20))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
