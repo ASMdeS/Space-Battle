@@ -68,6 +68,7 @@ def jogar():
 
         imagem_coracao = pygame.image.load("images/life.png")
         imagem_bala = pygame.image.load("images/bala.png")
+        imagem_balaazul = pygame.image.load("images/bala_coletada.png")
         imagem_coracaoreduzido = pygame.transform.scale(imagem_coracao, (20, 20))
 
         for event in pygame.event.get():
@@ -118,15 +119,15 @@ def jogar():
 
         # Vidas dos Players
         for i in range(int(player1.vidas)):
-            screen.blit(imagem_coracaoreduzido, (30 + (i * 20), 570))
+            screen.blit(imagem_coracaoreduzido, (30 + (i * 20), 590))
         for i in range(int(player2.vidas)):
-            screen.blit(imagem_coracaoreduzido, (30 + (i * 20), 40))
+            screen.blit(imagem_coracaoreduzido, (30 + (i * 20), 30))
 
         # Balas dos Players
         for i in range(int(player1.balas)):
-            screen.blit(imagem_bala, (570 - (i * 20), 570))
+            screen.blit(imagem_balaazul, (30 + (i * 10), 612))
         for i in range(int(player2.balas)):
-            screen.blit(imagem_bala, (570 - (i * 20), 40))
+            screen.blit(imagem_balaazul, (30 + (i * 10), 20))
 
         gerenciador_itens.itens.update()
         gerenciador_itens.itens.draw(screen)
