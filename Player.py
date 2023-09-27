@@ -25,6 +25,7 @@ class Player:
         self.x_bala = 0
         self.y_bala = 0
         self.direcao_bala = "parado"
+        self.foi_atingido = False
 
     def rotacionar_imagem(self, angle):
         # Rotaciona a imagem atual do jogador
@@ -106,7 +107,7 @@ class Player:
             self.direcao_bala = self.direcao
             self.balas -= 1
 
-    def atirando_bala(self, screen, imagem_bala):
+    def atirando_bala(self, screen, imagem_bala, lst_obst, player):
         if self.atirando:
             screen.blit(imagem_bala, (self.x_bala, self.y_bala))
             if self.direcao_bala == "esquerda":
@@ -117,3 +118,17 @@ class Player:
                 self.y_bala += 10
             if self.direcao_bala == "cima":
                 self.y_bala -= 10
+            self.quadrado_bala = pygame.Rect(self.x_bala, self.y_bala, 8, 8)
+
+            for obst in lst_obst:
+                if self.quadrado_bala.colliderect(obst.retangulo):
+                    print('oi')
+            
+            if self.quadrado_bala.colliderect(player.quadrado) and player.foi_atingido == False:
+                player.vidas -= 1
+                player.foi_atingido = True
+                print('colidiu com player')
+        self.quadrado_bala = pygame.Rect(self.x_bala, self.y_bala, 8, 8)
+        if not self.quadrado_bala.colliderect(player.quadrado):
+            player.foi_atingido = False
+
