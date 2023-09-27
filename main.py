@@ -49,7 +49,7 @@ def menu_principal():
                 if botao_jogar.apertado(mouse_x, mouse_y, 330, 415):
                     # RODAR O JOGO
                     print('jogar')
-                    som_inicio.play()
+                    # wsom_inicio.play()
                     jogar()
                 if botao_sair.apertado(mouse_x, mouse_y, 455, 540):
                     # FECHA A JANELA
@@ -91,6 +91,10 @@ def jogar():
 
         player1.movimento(pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d, lista_obstaculos)
         player2.movimento(pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT, lista_obstaculos)
+        player1.atirar(screen, imagem_bala)
+        player2.atirar(screen, imagem_bala)
+        player1.atirando_bala(screen, imagem_bala)
+        player2.atirando_bala(screen, imagem_bala)
 
         player1.mostrar_player(screen)
         player2.mostrar_player(screen)

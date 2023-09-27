@@ -20,6 +20,11 @@ class Player:
         self.direcao = "parado"
         self.vidas = 5
         self.balas = 0
+        self.pode_atirar = False
+        self.atirando = False
+        self.x_bala = 0
+        self.y_bala = 0
+        self.direcao_bala = "parado"
 
     def rotacionar_imagem(self, angle):
         # Rotaciona a imagem atual do jogador
@@ -57,6 +62,10 @@ class Player:
             self.direcao = "baixo"
             self.rotacionar_imagem(180)  # Rotação para baixo
 
+        if keys[self.tecla_tiro]:
+            if self.balas > 0:
+                self.pode_atirar = True
+
         # mantem o jogador dentro da tela
         if self.quadrado.y < 0:
             self.quadrado.y = 0
@@ -86,3 +95,25 @@ class Player:
 
     def mostrar_player(self, screen):
         screen.blit(self.imagem, self.rect)
+
+    def atirar(self, screen, imagem_bala):
+        if self.pode_atirar:
+            self.x_bala = self.quadrado.x + 16
+            self.y_bala = self.quadrado.y + 16
+            screen.blit(imagem_bala, (self.x_bala, self.y_bala))
+            self.atirando = True
+            self.pode_atirar = False
+            self.direcao_bala = self.direcao
+            self.balas -= 1
+
+    def atirando_bala(self, screen, imagem_bala):
+        if self.atirando:
+            screen.blit(imagem_bala, (self.x_bala, self.y_bala))
+            if self.direcao_bala == "esquerda":
+                self.x_bala -= 10
+            if self.direcao_bala == "direita":
+                self.x_bala += 10
+            if self.direcao_bala == "baixo":
+                self.y_bala += 10
+            if self.direcao_bala == "cima":
+                self.y_bala -= 10
