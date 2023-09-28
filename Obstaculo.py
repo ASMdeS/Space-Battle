@@ -11,14 +11,14 @@ class Obstaculo():
         self.imagem_original = self.imagem
         self.x = x
         self.y = y
-        self.retangulo = pygame.Rect(x, y, img.get_width(), img.get_height())
+        self.rect = pygame.Rect(x, y, img.get_width(), img.get_height())
 
     def rotacionar_imagem(self, angle):
         # Rotaciona a imagem atual do jogador
         self.imagem = pygame.transform.rotate(self.imagem_original, angle)
 
     def mostrar_obstaculo(self, screen):
-        screen.blit(self.imagem, self.retangulo)
+        screen.blit(self.imagem, self.rect)
 
 
 obstaculo1 = Obstaculo('images/obstaculo-1.png', 100, 200)

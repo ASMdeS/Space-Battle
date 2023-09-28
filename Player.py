@@ -1,4 +1,5 @@
 import pygame
+from Bala import *
 
 pygame.init()
 
@@ -26,6 +27,7 @@ class Player:
         self.y_bala = 0
         self.direcao_bala = "parado"
         self.foi_atingido = False
+        self.balas_group = pygame.sprite.Group()
 
     def rotacionar_imagem(self, angle):
         # Rotaciona a imagem atual do jogador
@@ -78,7 +80,7 @@ class Player:
             self.quadrado.x = 568
 
         for obstaculo in lista_obst:
-            if self.rect.colliderect(obstaculo.retangulo):
+            if self.rect.colliderect(obstaculo.rect):
                 if keys[tecla_esquerda]:
                     self.rect.left = old_position.left
                 if keys[tecla_direita]:
@@ -99,35 +101,33 @@ class Player:
 
     def atirar(self, screen, imagem_bala):
         if self.pode_atirar:
-            self.x_bala = self.quadrado.x + 16
-            self.y_bala = self.quadrado.y + 16
-            screen.blit(imagem_bala, (self.x_bala, self.y_bala))
-            self.atirando = True
+            x_bala = self.quadrado.x + 16
+            y_bala = self.quadrado.y + 16
+            direcao_bala = self.direcao
+            bala = Bala(x_bala, y_bala, direcao_bala, imagem_bala)
+            self.balas_group.add(bala)
             self.pode_atirar = False
-            self.direcao_bala = self.direcao
             self.balas -= 1
 
     def atirando_bala(self, screen, imagem_bala, lst_obst, player):
-        if self.atirando:
-            screen.blit(imagem_bala, (self.x_bala, self.y_bala))
-            if self.direcao_bala == "esquerda":
-                self.x_bala -= 10
-            if self.direcao_bala == "direita":
-                self.x_bala += 10
-            if self.direcao_bala == "baixo":
-                self.y_bala += 10
-            if self.direcao_bala == "cima":
-                self.y_bala -= 10
-            self.quadrado_bala = pygame.Rect(self.x_bala, self.y_bala, 8, 8)
-
-            for obst in lst_obst:
-                if self.quadrado_bala.colliderect(obst.retangulo):
-                    print('oi')
+        self.balas_group.update()
+        self.balas_group.draw(screen)
+        
+        for bala in self.balas_group.copy():
+            if not pygame.Rect(0, 0, 600, 640).colliderect(bala.rect):
+                self.balas_group.remove(bala)
             
-            if self.quadrado_bala.colliderect(player.quadrado) and player.foi_atingido == False:
+            for obst in lst_obst:
+                if pygame.sprite.collide_rect(bala, obst):
+                    print('colidiu com obstáculo')
+                    self.balas_group.remove(bala)
+                    
+            if pygame.sprite.collide_rect(bala, player) and player.foi_atingido == False:
                 player.vidas -= 1
-                player.foi_atingido = True
                 print('colidiu com player')
+                player.foi_atingido = True
+                self.balas_group.remove(bala)
+
         self.quadrado_bala = pygame.Rect(self.x_bala, self.y_bala, 8, 8)
         if not self.quadrado_bala.colliderect(player.quadrado):
             player.foi_atingido = False

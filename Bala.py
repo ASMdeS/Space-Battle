@@ -1,22 +1,20 @@
 import pygame
-class Bala:
-    def __init__(self):
 
+class Bala(pygame.sprite.Sprite):
+    def __init__(self, x, y, direcao, img):
+        super().__init__()
+        self.image = img
+        self.rect = self.image.get_rect()
+        self.rect.center = (x, y)
+        self.direcao = direcao
+        self.velocidade = 10
 
-# Teremos três estados de bala: pronto (preparado), (recarregando) e (vazio)
-
-bulletImg = pygame.image.load('images/bala.png')
-bulletX = 0
-bulletY = 480
-bulletX_change = 0
-bulletY_change = 10
-bullet_state = "ready"
-
-if bullet_state == "preparado":
-    # Bala não aparecerá na tela
-    # Posicao da bala será igual a do Player
-if bullet_state == "recarregando":
-    # Bala estará aparecendo na tela
-    bulletY_change = 10
-if bullet_state == "vazio":
-    # Não há balas e não será possível atirar
+    def update(self):
+        if self.direcao == "esquerda":
+            self.rect.x -= self.velocidade
+        elif self.direcao == "direita":
+            self.rect.x += self.velocidade
+        elif self.direcao == "cima":
+            self.rect.y -= self.velocidade
+        elif self.direcao == "baixo":
+            self.rect.y += self.velocidade
