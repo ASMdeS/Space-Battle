@@ -134,6 +134,12 @@ def jogar():
         pygame.sprite.spritecollide(player1, gerenciador_itens.itens, True)
         pygame.sprite.spritecollide(player2, gerenciador_itens.itens, True)
 
+        # CONDIÇÃO DE VITÓRIA
+        if player1.vidas == 0:
+            fim_de_jogo(player2.imagem)
+        elif player2.vidas == 0:
+            fim_de_jogo(player1.imagem)
+
         for obstaculo in lista_obstaculos:
             obstaculo.mostrar_obstaculo(screen)
 
@@ -155,5 +161,41 @@ def jogar():
         pygame.display.update()
         screen.blit(mapa_background, (0, 0))
 
+screen = pygame.display.set_mode((600, 640))
+
+def fim_de_jogo(winner_img):
+    while True:
+        pygame.display.set_caption('Fim de jogo')
+        fundo = pygame.image.load('images/endgame_menu.png')
+
+        botao_reiniciar = Botao('images/restart_button.png', 195, 330)
+        botao_sair = Botao('images/leave_button.png', 195, 455)
+        botao_reiniciar.mostrar_botao(screen)
+        botao_sair.mostrar_botao(screen)
+
+        screen.blit(winner_img, (230, 272))
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            if event.type == MOUSEBUTTONDOWN:
+                mouse_x, mouse_y = pygame.mouse.get_pos()
+                if botao_reiniciar.apertado(mouse_x, mouse_y, 330, 415):
+                    # REINICIAR O JOGO
+                    print('reiniciar')
+                    jogar()
+                    
+                if botao_sair.apertado(mouse_x, mouse_y, 455, 540):
+                    # FECHA A JANELA
+                    print('sair')
+                    pygame.quit()
+                    exit()
+        
+        pygame.display.update()
+        screen.blit(fundo, (0, 0))
+
+
 
 menu_principal()
+
