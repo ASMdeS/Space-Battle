@@ -66,7 +66,7 @@ class Player:
             self.rotacionar_imagem(180)  # Rotação para baixo
 
         if keys[self.tecla_tiro]:
-            if self.balas > 0:
+            if self.balas > 0 and len(self.balas_group) == 0:
                 self.pode_atirar = True
 
         # mantem o jogador dentro da tela
