@@ -22,7 +22,7 @@ som_vida = pygame.mixer.Sound('sounds/smw_power-up.wav')
 som_velocidade = pygame.mixer.Sound('sounds/smw_hit_while_flying.wav')
 som_tiro = pygame.mixer.Sound('sounds/smw_blaster-firing.wav')
 som_gameover = pygame.mixer.Sound('sounds/game-over-arcade-6435.mp3')
-som_colisao = pygame.mixer.Sound('sounds/smw_thud.wav')
+som_colisao = pygame.mixer.Sound('sounds/smw_yoshi_fire.wav')
 som_inicio = pygame.mixer.Sound('sounds/smw_keyhole_exit.wav')
 
 # Fonte
@@ -63,6 +63,7 @@ def menu_principal():
 
 # Função para jogar o Space Battle
 def jogar():
+    som_inicio.play()
     pygame.display.set_caption('Space Battle')
     mapa_background = pygame.image.load('images/map_background.png')
     player1 = Player('images/nave_1.png', 260, 530, pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d, pygame.K_f)
@@ -106,10 +107,10 @@ def jogar():
 
         player1.movimento(pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d, lista_obstaculos)
         player2.movimento(pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT, lista_obstaculos)
-        player1.atirar(screen, imagem_bala)
-        player2.atirar(screen, imagem_bala)
-        player1.atirando_bala(screen, imagem_bala, lista_obstaculos, player2)
-        player2.atirando_bala(screen, imagem_bala, lista_obstaculos, player1)
+        player1.atirar(screen, imagem_bala, som_tiro)
+        player2.atirar(screen, imagem_bala, som_tiro)
+        player1.atirando_bala(screen, imagem_bala, lista_obstaculos, player2, som_colisao)
+        player2.atirando_bala(screen, imagem_bala, lista_obstaculos, player1, som_colisao)
 
         player1.mostrar_player(screen)
         player2.mostrar_player(screen)
@@ -157,8 +158,10 @@ def jogar():
 
         # CONDIÇÃO DE VITÓRIA
         if player1.vidas == 0:
+            som_gameover.play()
             fim_de_jogo(player2.imagem)
         elif player2.vidas == 0:
+            som_gameover.play()
             fim_de_jogo(player1.imagem)
 
         for obstaculo in lista_obstaculos:

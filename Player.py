@@ -103,7 +103,7 @@ class Player:
     def mostrar_player(self, screen):
         screen.blit(self.imagem, self.rect)
 
-    def atirar(self, screen, imagem_bala):
+    def atirar(self, screen, imagem_bala, som_tiro):
         if self.pode_atirar:
             x_bala = self.quadrado.x + 16
             y_bala = self.quadrado.y + 16
@@ -112,8 +112,10 @@ class Player:
             self.balas_group.add(bala)
             self.pode_atirar = False
             self.balas -= 1
+            som_tiro.play()
+            
 
-    def atirando_bala(self, screen, imagem_bala, lst_obst, player):
+    def atirando_bala(self, screen, imagem_bala, lst_obst, player, som_colisao):
         self.balas_group.update()
         self.balas_group.draw(screen)
         
@@ -128,6 +130,7 @@ class Player:
                     
             if pygame.sprite.collide_rect(bala, player) and player.foi_atingido == False:
                 player.vidas -= 1
+                som_colisao.play()
                 print('colidiu com player')
                 player.foi_atingido = True
                 self.balas_group.remove(bala)
