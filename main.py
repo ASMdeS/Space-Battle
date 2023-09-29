@@ -17,16 +17,16 @@ menu = pygame.image.load('images/menu.png')
 # Musica de Fundo
 musica_de_fundo = pygame.mixer.music.load('sounds/CXR ATK - Dimensions.mp3')
 pygame.mixer.music.play(-1)
-som_bala = pygame.mixer.Sound('sounds\smw_kick.wav')
-som_vida = pygame.mixer.Sound('sounds\smw_power-up.wav')
-som_velocidade = pygame.mixer.Sound('sounds\smw_hit_while_flying.wav')
-som_tiro = pygame.mixer.Sound('sounds\smw_blaster-firing.wav')
-som_gameover = pygame.mixer.Sound('sounds\game-over-arcade-6435.mp3')
-som_colisao = pygame.mixer.Sound('sounds\smw_thud.wav')
-som_inicio = pygame.mixer.Sound('sounds\smw_keyhole_exit.wav')
+som_bala = pygame.mixer.Sound('sounds/smw_kick.wav')
+som_vida = pygame.mixer.Sound('sounds/smw_power-up.wav')
+som_velocidade = pygame.mixer.Sound('sounds/smw_hit_while_flying.wav')
+som_tiro = pygame.mixer.Sound('sounds/smw_blaster-firing.wav')
+som_gameover = pygame.mixer.Sound('sounds/game-over-arcade-6435.mp3')
+som_colisao = pygame.mixer.Sound('sounds/smw_thud.wav')
+som_inicio = pygame.mixer.Sound('sounds/smw_keyhole_exit.wav')
 
 # Fonte
-fonte = pygame.font.SysFont('arial', 30, True, True)
+fonte = pygame.font.SysFont('arial', 15, False, False)
 
 
 # FUNÇÃO QUE MOSTRA O MENU PRINCIPAL
@@ -75,6 +75,21 @@ def jogar():
         # Clock
         pygame.time.Clock().tick(30)
 
+        mensagem_balas_1 = f'balas: {player1.balas_totais}'
+        mensagem_balas_1_formatado = fonte.render(mensagem_balas_1, True, (255,255,255))
+        mensagem_balas_2 = f'balas: {player2.balas_totais}'
+        mensagem_balas_2_formatado = fonte.render(mensagem_balas_2, True, (255,255,255))
+
+        mensagem_vidas_1 = f'vidas: {player1.vidas_totais}'
+        mensagem_vidas_1_formatado = fonte.render(mensagem_vidas_1, True, (255,255,255))
+        mensagem_vidas_2 = f'vidas: {player2.vidas_totais}'
+        mensagem_vidas_2_formatado = fonte.render(mensagem_vidas_2, True, (255,255,255))
+
+        mensagem_velocidade_1 = f'velocidade: {player1.velocidade_total}'
+        mensagem_velocidade_1_formatado = fonte.render(mensagem_velocidade_1, True, (255,255,255))
+        mensagem_velocidade_2 = f'velocidade: {player2.velocidade_total}'
+        mensagem_velocidade_2_formatado = fonte.render(mensagem_velocidade_2, True, (255,255,255))
+
         imagem_coracao_vermelho = pygame.image.load("images/life.png")
         imagem_coracao = pygame.image.load("images/coracao_coletavel.png")
         imagem_bala = pygame.image.load("images/bala.png")
@@ -102,31 +117,37 @@ def jogar():
         for item in gerenciador_itens.itens:
             if pygame.sprite.collide_rect(player1, item):
                 if item.name == "images/velocidade.png":
+                    player1.velocidade_total += 5
                     if player1.velocidade < 20:
                         som_velocidade.play()
                         player1.velocidade += 5
             if pygame.sprite.collide_rect(player2, item):
                 if item.name == "images/velocidade.png":
+                    player2.velocidade_total += 5
                     if player2.velocidade < 20:
                         som_velocidade.play()
                         player2.velocidade += 5
             if pygame.sprite.collide_rect(player1, item):
                 if item.name == "images/coracao_coletavel.png":
+                    player1.vidas_totais += 1
                     if player1.vidas < 6:
                         som_vida.play()
                         player1.vidas += 1
             if pygame.sprite.collide_rect(player2, item):
                 if item.name == "images/coracao_coletavel.png":
+                    player2.vidas_totais += 1
                     if player2.vidas < 6:
                         som_vida.play()
                         player2.vidas += 1
             if pygame.sprite.collide_rect(player1, item):
                 if item.name == "images/bala.png":
+                    player1.balas_totais += 1
                     if player1.balas < 6:
                         som_bala.play()
                         player1.balas += 1
             if pygame.sprite.collide_rect(player2, item):
                 if item.name == "images/bala.png":
+                    player2.balas_totais += 1
                     if player2.balas < 6:
                         som_bala.play()
                         player2.balas += 1
@@ -157,6 +178,13 @@ def jogar():
 
         gerenciador_itens.itens.update()
         gerenciador_itens.itens.draw(screen)
+
+        screen.blit(mensagem_balas_1_formatado,(500,550))
+        screen.blit(mensagem_balas_2_formatado,(500,20))
+        screen.blit(mensagem_vidas_1_formatado,(500,570))
+        screen.blit(mensagem_vidas_2_formatado,(500,40))
+        screen.blit(mensagem_velocidade_1_formatado,(500,590))
+        screen.blit(mensagem_velocidade_2_formatado,(500,60))
 
         pygame.display.update()
         screen.blit(mapa_background, (0, 0))

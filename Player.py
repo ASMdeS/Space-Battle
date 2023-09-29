@@ -21,6 +21,9 @@ class Player:
         self.direcao = "parado"
         self.vidas = 5
         self.balas = 0
+        self.balas_totais = 0
+        self.vidas_totais = 5
+        self.velocidade_total = 10
         self.pode_atirar = False
         self.atirando = False
         self.x_bala = 0
@@ -28,6 +31,7 @@ class Player:
         self.direcao_bala = "parado"
         self.foi_atingido = False
         self.balas_group = pygame.sprite.Group()
+
 
     def rotacionar_imagem(self, angle):
         # Rotaciona a imagem atual do jogador
