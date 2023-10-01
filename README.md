@@ -4,8 +4,7 @@
 <br>
 
 ## 💻 Telas 
-![](https://github.com/ASMdeS/Projeto_P1_aaef/assets/107323497/51ff826a-ac5c-48cc-b0df-e2cffb22da12)
-
+![telas-projeto-p1](https://github.com/ASMdeS/Projeto_P1_aaef/assets/107323497/ef05442c-c571-423e-b936-400e7f588f1d)
 
 <br>
 
@@ -13,21 +12,21 @@
 
 Para usar projeto, siga essas etapas no VS Code:
 
-Clone o repositório:
+Clone o repositório
 ```
 git clone https://github.com/ASMdeS/Projeto_P1_aaef.git
 ```
 
-Instale o pygame:
+Instale o pygame
 ```
 pip install pygame
 ```
-Se direcione para o file "main.py" 
+Se direcione para o file "main.py"
 <br>
 
 ![image](https://github.com/ASMdeS/Projeto_P1_aaef/assets/107323497/4eb7d0ce-5433-4900-845c-084bc0e601c5)
 
-Aperte em RUN
+Aperte em RUN e se divirta
 <br>
 
 ![image](https://github.com/ASMdeS/Projeto_P1_aaef/assets/107323497/aecaa8ac-8fa3-44df-af1d-d1cd17c750bf)
@@ -89,10 +88,10 @@ Todos os participantes se ajudaram bastante em todas as tarefas, fazendo muitas 
 <br>
 
 ## 📚 Conceitos usados aprendidos na disciplina 
-- [x] Estruturas condicionais 
-- [x] Uso de listas e dicionários  
-- [x] Laços de repetição (inclusive, o core do jogo se baseia em um "While True" loop)
-- [x] Separação correta de funções e classes 
+- [x] Estruturas Condicionais 
+- [x] Listas, Tuplas e Dicionários  
+- [x] Laços de Repetição (inclusive, o core do jogo se baseia em um "While True" loop)
+- [x] Separação correta de funções e classes
 
 <br> 
 
@@ -105,10 +104,6 @@ Todos os participantes se ajudaram bastante em todas as tarefas, fazendo muitas 
   
 - Quais as lições aprendidas durante o projeto?
   - O contato com os colegas e a resolução de bugs coletivamente foi essencial para a finalização do projeto, assim como a modularização correta do código. 
-
-## 🛠️ Bibliotecas utilizadas
-- As **ferramentas**, **bibliotecas**, **frameworks** utilizados com as respectivas **justificativas** para o uso;
-
 
 ## 🧩Arquitetura do código 
 - A descrição da **arquitetura** do projeto, explicando como o **código foi organizado**;
