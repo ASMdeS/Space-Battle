@@ -22,7 +22,7 @@ class Player:
         self.vidas = 3
         self.balas = 0
         self.balas_totais = 0
-        self.vidas_totais = 4
+        self.vidas_totais = 3
         self.velocidade_total = 10
         self.pode_atirar = False
         self.atirando = False

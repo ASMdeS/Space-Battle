@@ -132,13 +132,13 @@ def jogar():
             if pygame.sprite.collide_rect(player1, item):
                 if item.name == "images/coracao_coletavel.png":
                     player1.vidas_totais += 1
-                    if player1.vidas < 6:
+                    if player1.vidas < 4:
                         som_vida.play()
                         player1.vidas += 1
             if pygame.sprite.collide_rect(player2, item):
                 if item.name == "images/coracao_coletavel.png":
                     player2.vidas_totais += 1
-                    if player2.vidas < 6:
+                    if player2.vidas < 4:
                         som_vida.play()
                         player2.vidas += 1
             if pygame.sprite.collide_rect(player1, item):
