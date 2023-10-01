@@ -6,7 +6,9 @@ from Botao import *
 from Obstaculo import *
 from Coletaveis import *
 import random
+import pygame.mixer
 
+pygame.mixer.init()
 pygame.init()
 # Icone do Jogo
 icone_jogo = pygame.image.load('images/menu.png')
