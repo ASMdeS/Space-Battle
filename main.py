@@ -8,7 +8,6 @@ from  components.Coletaveis import *
 import random
 import pygame.mixer
 
-
 pygame.init()
 pygame.mixer.init()
 # Icone do Jogo
@@ -32,7 +31,7 @@ som_inicio = pygame.mixer.Sound('sounds/smw_keyhole_exit.wav')
 fonte = pygame.font.SysFont('arial', 15, False, False)
 
 
-# FUNÇÃO QUE MOSTRA O MENU PRINCIPAL
+# MENU DE INÍCIO DO JOGO
 def menu_principal():
     while True:
         pygame.display.set_caption('Menu Principal')
@@ -63,8 +62,7 @@ def menu_principal():
         pygame.display.update()
         screen.blit(menu, (0, 0))
 
-
-# Função para jogar o Space Battle
+# JOGO EM SI
 def jogar():
     som_inicio.play()
     pygame.display.set_caption('Space Battle')
@@ -195,8 +193,7 @@ def jogar():
         pygame.display.update()
         screen.blit(mapa_background, (0, 0))
 
-screen = pygame.display.set_mode((600, 640))
-
+#FIM DO JOGO 
 def fim_de_jogo(winner_img):
     while True:
         pygame.display.set_caption('Fim de jogo')
@@ -229,7 +226,6 @@ def fim_de_jogo(winner_img):
         pygame.display.update()
         screen.blit(fundo, (0, 0))
 
-
-
+screen = pygame.display.set_mode((600, 640))
 menu_principal()
 

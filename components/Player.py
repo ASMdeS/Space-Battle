@@ -19,10 +19,10 @@ class Player:
         self.tecla_tiro = tecla_tiro
         self.velocidade = 10
         self.direcao = "parado"
-        self.vidas = 5
+        self.vidas = 3
         self.balas = 0
         self.balas_totais = 0
-        self.vidas_totais = 5
+        self.vidas_totais = 4
         self.velocidade_total = 10
         self.pode_atirar = False
         self.atirando = False
