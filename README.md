@@ -3,33 +3,24 @@
 
 <br>
 
+## 🧩Arquitetura do código 
+  
+![asdf](https://github.com/ASMdeS/Projeto_P1_aaef/assets/107323497/09c4197b-c6e6-42d7-81ba-2af925d8262e)
+
+<br>
+
+O código é basicamente dividido em: 
+- *main.py* --> Arquivo central que basicamente vai rodar tudo;
+- *components* --> Pasta com as principais classes do código; 
+- *sounds* --> Pasta com os sons do jogo;
+- *images* --> Pasta com as imagens do jogo;
+
+Para mais detalhes, é possível abrir o código e ir analisando as variáveis e os comentários, tudo isso foi revisado pelo nosso time e muito bem estruturado para permitir que qualquer pessoa que entre no código possa entendê-lo.
+
+<br>
+
 ## 💻 Telas 
 ![telas-projeto-p1](https://github.com/ASMdeS/Projeto_P1_aaef/assets/107323497/ef05442c-c571-423e-b936-400e7f588f1d)
-
-<br>
-
-## 🎮 Instalando e jogando o Space Battle
-
-Para usar projeto, siga essas etapas no VS Code:
-
-Clone o repositório
-```
-git clone https://github.com/ASMdeS/Projeto_P1_aaef.git
-```
-
-Instale o pygame
-```
-pip install pygame
-```
-Se direcione para o file "main.py"
-<br>
-
-![image](https://github.com/ASMdeS/Projeto_P1_aaef/assets/107323497/4eb7d0ce-5433-4900-845c-084bc0e601c5)
-
-Aperte em RUN e se divirta
-<br>
-
-![image](https://github.com/ASMdeS/Projeto_P1_aaef/assets/107323497/aecaa8ac-8fa3-44df-af1d-d1cd17c750bf)
 
 <br>
 
@@ -87,27 +78,36 @@ Todos os participantes se ajudaram bastante em todas as tarefas, fazendo muitas 
 
 <br>
 
+## 🎮 Instalando e jogando o Space Battle
+
+Para usar projeto, siga essas etapas no VS Code:
+
+Clone o repositório
+```
+git clone https://github.com/ASMdeS/Projeto_P1_aaef.git
+```
+
+Instale o pygame
+```
+pip install pygame
+```
+Se direcione para o file "main.py"
+<br>
+
+![image](https://github.com/ASMdeS/Projeto_P1_aaef/assets/107323497/4eb7d0ce-5433-4900-845c-084bc0e601c5)
+
+Aperte em RUN e se divirta
+<br>
+
+![image](https://github.com/ASMdeS/Projeto_P1_aaef/assets/107323497/aecaa8ac-8fa3-44df-af1d-d1cd17c750bf)
+
+<br>
+
 ## 📚 Conceitos usados aprendidos na disciplina 
 - [x] Estruturas Condicionais 
 - [x] Listas, Tuplas e Dicionários  
 - [x] Laços de Repetição (inclusive, o core do jogo se baseia em um "While True" loop)
 - [x] Separação correta de funções e classes
-
-<br> 
-
-## 🧩Arquitetura do código 
-  
-![asdf](https://github.com/ASMdeS/Projeto_P1_aaef/assets/107323497/09c4197b-c6e6-42d7-81ba-2af925d8262e)
-
-<br>
-
-O código é basicamente dividido em: 
-- *main.py* --> Arquivo central que basicamente vai rodar tudo;
-- *components* --> Pasta com as principais classes do código; 
-- *sounds* --> Pasta com os sons do jogo;
-- *images* --> Pasta com as imagens do jogo;
-
-Para mais detalhes, é possível abrir o código e ir analisando as variáveis e os comentários, tudo isso foi revisado pelo nosso time e muito bem estruturado para permitir que qualquer pessoa que entre no código possa entendê-lo.
 
 <br> 
 
