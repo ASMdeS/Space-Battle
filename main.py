@@ -105,7 +105,7 @@ def jogar():
                 pygame.quit()
                 exit()
 
-        if random.random() < 0.009:  # Ajuste a probabilidade conforme necessário
+        if random.random() < 0.09:  # Ajuste a probabilidade conforme necessário
             gerenciador_itens.gerar_item()
 
         player1.movimento(pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d, lista_obstaculos)
