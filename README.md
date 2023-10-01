@@ -54,8 +54,8 @@ Todos os participantes se ajudaram bastante em todas as tarefas, fazendo muitas 
         </a>
       </td>
       <td align="center">
-        <a href="https://avatars.githubusercontent.com/u/131920563?v=4">
-          <img src="" width="100px;" alt="Marcos Christopher"/><br>
+        <a href="#">
+          <img src="https://avatars.githubusercontent.com/u/131920563?v=4" width="100px;" alt="Marcos Christopher"/><br>
           <sub>
             <b> Marcos Christopher </b>
           </sub>
