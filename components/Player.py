@@ -1,5 +1,5 @@
 import pygame
-from Bala import *
+from components.Bala import *
 
 pygame.init()
 

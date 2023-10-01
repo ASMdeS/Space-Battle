@@ -1,10 +1,10 @@
 import pygame
 from pygame.locals import *
 from sys import exit
-from Player import *
-from Botao import *
-from Obstaculo import *
-from Coletaveis import *
+from  components.Player import *
+from  components.Botao import *
+from  components.Obstaculo import *
+from  components.Coletaveis import *
 import random
 import pygame.mixer
 
