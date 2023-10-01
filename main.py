@@ -8,8 +8,9 @@ from Coletaveis import *
 import random
 import pygame.mixer
 
-pygame.mixer.init()
+
 pygame.init()
+pygame.mixer.init()
 # Icone do Jogo
 icone_jogo = pygame.image.load('images/menu.png')
 pygame.display.set_icon(icone_jogo)
