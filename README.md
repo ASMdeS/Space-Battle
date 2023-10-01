@@ -34,7 +34,7 @@ Aperte em RUN e se divirta
 <br>
 
 ## 🤝 Participantes
-Todos os participantes se ajudaram bastante em todas as tarefas, fazendo muitas calls e sessões de pair-programming.
+Todos os participantes se ajudaram bastante em todas as tarefas, fazendo muitas calls e sessões de pair-programming, principalmente para resolver os pequenos problemas que surgiam, como adicionar mensagens na tela, organizar alguns bugs de contagem e aparecimento de coletáveis etc. 
 <br>
 <table>
   <tr>
@@ -81,9 +81,9 @@ Todos os participantes se ajudaram bastante em todas as tarefas, fazendo muitas 
     </tr>
 </table>
 
-- *Eric* ajudou bastante o time com suas habilidades de design; 
-- *Felipe* foi fundamental para começar o projeto e dar os primeiros passos;
-- *Arthur*, *Robério* e *Marcus Christopher* foram responsáveis por implementar a principal lógica do projeto: fazer o funcionamento do tiro.
+- *Eric* ajudou bastante o time com suas habilidades de design fazendo praticamente todas as telas e implementando os obstáculos do jogo; 
+- *Felipe* foi fundamental para começar o projeto e dar os primeiros passos, adicionando os sons e implementando parte dos coletáveis;
+- *Arthur*, *Robério* e *Marcus Christopher* foram responsáveis por implementar o resto dos coletáveis e a principal lógica do projeto: fazer o funcionamento do tiro;
 
 <br>
 
@@ -95,15 +95,28 @@ Todos os participantes se ajudaram bastante em todas as tarefas, fazendo muitas 
 
 <br> 
 
+## 🧩Arquitetura do código 
+  
+![asdf](https://github.com/ASMdeS/Projeto_P1_aaef/assets/107323497/09c4197b-c6e6-42d7-81ba-2af925d8262e)
+
+<br>
+
+O código é basicamente dividido em: 
+- *main.py* --> Arquivo central que basicamente vai rodar tudo;
+- *components* --> Pasta com as principais classes do código; 
+- *sounds* --> Pasta com os sons do jogo;
+- *images* --> Pasta com as imagens do jogo;
+
+Para mais detalhes, é possível abrir o código e ir analisando as variáveis e os comentários, tudo isso foi revisado pelo nosso time e muito bem estruturado para permitir que qualquer pessoa que entre no código possa entendê-lo.
+
+<br> 
+
 ## 🧱 Principais desafios
 - Qual foi o maior erro cometido durante o projeto? Como vocês lidaram com ele?
   - Não organizar o código e fazer tudo no main file. Resolvemos isso fazendo o a modularização correta e organizando o código como já foi demonstrado. 
   
 - Qual foi o maior desafio enfrentado durante o projeto? Como vocês lidaram com ele?
-  - Com certeza, a implementação do processo de tiro e tirar a vida. Para resolver esse problema, tivemos que nos reunir presencialmente e fazer pesquisas tentando resolver o problema.
+  - Com certeza, a implementação do processo de atirar e tirar a vida. Para resolver esse problema, tivemos que nos reunir presencialmente e fazer pesquisas tentando resolver o problema.
   
 - Quais as lições aprendidas durante o projeto?
-  - O contato com os colegas e a resolução de bugs coletivamente foi essencial para a finalização do projeto, assim como a modularização correta do código. 
-
-## 🧩Arquitetura do código 
-- A descrição da **arquitetura** do projeto, explicando como o **código foi organizado**;
+  - O time chegou a conclusão que entre as principais lições aprendidas com o projeto, ter tido o contato com os outros membros do time e ter tirado dúvidas de como o código foi organizado, fazendo, inclusive, a modularização correta desses códigos, foi essencial e, com certeza, é um aprendizado que levaremos para nossos projetos futuros.
