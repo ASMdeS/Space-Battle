@@ -3,7 +3,6 @@ import pygame
 pygame.init()
 grupo_obstaculos = pygame.sprite.Group()
 
-
 class Obstaculo():
     def __init__(self, imagem, x, y):
         self.imagem = pygame.image.load(imagem)
@@ -20,7 +19,6 @@ class Obstaculo():
     def mostrar_obstaculo(self, screen):
         screen.blit(self.imagem, self.rect)
 
-
 obstaculo1 = Obstaculo('images/obstaculo-1.png', 100, 200)
 obstaculo2 = Obstaculo('images/obstaculo-2.png', 450, 60)
 obstaculo2_2 = Obstaculo('images/obstaculo-2.png', 100, 410)
@@ -34,9 +32,7 @@ obstaculo4_6 = Obstaculo('images/obstaculo-4.png', 484, 500)
 obstaculo4_7 = Obstaculo('images/obstaculo-4.png', 390, 220)
 obstaculo4_8 = Obstaculo('images/obstaculo-4.png', 448, 220)
 
-lista_obstaculos = [obstaculo1, obstaculo2, obstaculo2_2, obstaculo3, obstaculo4_1, obstaculo4_2, obstaculo4_3,
-                    obstaculo4_4, obstaculo4_5, obstaculo4_6, obstaculo4_7, obstaculo4_8]
-
+lista_obstaculos = [obstaculo1, obstaculo2, obstaculo2_2, obstaculo3, obstaculo4_1, obstaculo4_2, obstaculo4_3, obstaculo4_4, obstaculo4_5, obstaculo4_6, obstaculo4_7, obstaculo4_8]
 
 def gerar_lista_obstaculos():
     return lista_obstaculos

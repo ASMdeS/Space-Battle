@@ -41,7 +41,6 @@ possiveis_posicoes_spawnaveis = [
     (141, 334)
 ]
 
-
 class ItemColecionavel(pygame.sprite.Sprite):
     def __init__(self, name, imagem):
         super().__init__()
@@ -53,7 +52,6 @@ class ItemColecionavel(pygame.sprite.Sprite):
     def update(self):
         # Você pode adicionar lógica adicional aqui se os itens colecionáveis precisarem ser atualizados
         pass
-
 
 # Classe para gerenciar os itens colecionáveis
 class GerenciadorItensColecionaveis:
