@@ -65,7 +65,7 @@ class GerenciadorItensColecionaveis:
         num_itens_na_tela = len(self.itens)
 
         # Limite o número máximo de itens colecionáveis na tela a 8
-        if num_itens_na_tela < 3:
+        if num_itens_na_tela < 2:
             probabilidades = [10, 80, 10]
             tipos_itens = ["images/velocidade.png", "images/bala.png", "images/coracao_coletavel.png"]
             tipo_item = random.choices(tipos_itens, weights=probabilidades)[0]
