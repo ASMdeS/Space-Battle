@@ -1,8 +1,7 @@
 import pygame
-from Bala import *
+from components.Bala import *
 
 pygame.init()
-
 
 class Player:
     def __init__(self, imagem, x, y, tecla_cima, tecla_baixo, tecla_esquerda, tecla_direita, tecla_tiro):
@@ -19,10 +18,10 @@ class Player:
         self.tecla_tiro = tecla_tiro
         self.velocidade = 10
         self.direcao = "parado"
-        self.vidas = 5
+        self.vidas = 3
         self.balas = 0
         self.balas_totais = 0
-        self.vidas_totais = 5
+        self.vidas_totais = 3
         self.velocidade_total = 10
         self.pode_atirar = False
         self.atirando = False
@@ -31,7 +30,6 @@ class Player:
         self.direcao_bala = "parado"
         self.foi_atingido = False
         self.balas_group = pygame.sprite.Group()
-
 
     def rotacionar_imagem(self, angle):
         # Rotaciona a imagem atual do jogador
@@ -94,12 +92,6 @@ class Player:
                 if keys[tecla_baixo]:
                     self.rect.bottom = old_position.bottom
 
-    # A Função Colisão não é chamada. Discutir se deve ser remvovida 25/09
-    def colisao(self, obj):
-        if self.rect.colliderect(obj):
-            return True
-        return False
-
     def mostrar_player(self, screen):
         screen.blit(self.imagem, self.rect)
 
@@ -113,7 +105,6 @@ class Player:
             self.pode_atirar = False
             self.balas -= 1
             som_tiro.play()
-            
 
     def atirando_bala(self, screen, imagem_bala, lst_obst, player, som_colisao):
         self.balas_group.update()

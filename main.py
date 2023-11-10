@@ -1,13 +1,12 @@
 import pygame
 from pygame.locals import *
 from sys import exit
-from Player import *
-from Botao import *
-from Obstaculo import *
-from Coletaveis import *
+from  components.Player import *
+from  components.Botao import *
+from  components.Obstaculo import *
+from  components.Coletaveis import *
 import random
 import pygame.mixer
-
 
 pygame.init()
 pygame.mixer.init()
@@ -32,7 +31,7 @@ som_inicio = pygame.mixer.Sound('sounds/smw_keyhole_exit.wav')
 fonte = pygame.font.SysFont('arial', 15, False, False)
 
 
-# FUNÇÃO QUE MOSTRA O MENU PRINCIPAL
+# MENU DE INÍCIO DO JOGO
 def menu_principal():
     while True:
         pygame.display.set_caption('Menu Principal')
@@ -63,8 +62,7 @@ def menu_principal():
         pygame.display.update()
         screen.blit(menu, (0, 0))
 
-
-# Função para jogar o Space Battle
+# JOGO EM SI
 def jogar():
     som_inicio.play()
     pygame.display.set_caption('Space Battle')
@@ -95,18 +93,15 @@ def jogar():
         mensagem_velocidade_2_formatado = fonte.render(mensagem_velocidade_2, True, (255,255,255))
 
         imagem_coracao_vermelho = pygame.image.load("images/life.png")
-        imagem_coracao = pygame.image.load("images/coracao_coletavel.png")
+        imagem_coracaoreduzido = pygame.transform.scale(imagem_coracao_vermelho, (20, 20))
         imagem_bala = pygame.image.load("images/bala.png")
         imagem_balaazul = pygame.image.load("images/bala_coletada.png")
-        imagem_coracaoreduzido = pygame.transform.scale(imagem_coracao_vermelho, (20, 20))
+        imagem_coracao = pygame.image.load("images/coracao_coletavel.png")
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
-
-        if random.random() < 0.009:  # Ajuste a probabilidade conforme necessário
-            gerenciador_itens.gerar_item()
 
         player1.movimento(pygame.K_w, pygame.K_s, pygame.K_a, pygame.K_d, lista_obstaculos)
         player2.movimento(pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT, lista_obstaculos)
@@ -114,11 +109,29 @@ def jogar():
         player2.atirar(screen, imagem_bala, som_tiro)
         player1.atirando_bala(screen, imagem_bala, lista_obstaculos, player2, som_colisao)
         player2.atirando_bala(screen, imagem_bala, lista_obstaculos, player1, som_colisao)
-
         player1.mostrar_player(screen)
         player2.mostrar_player(screen)
+        
+        # Mostrando cada obstáculo
+        for obstaculo in lista_obstaculos:
+            obstaculo.mostrar_obstaculo(screen)
 
-        for item in gerenciador_itens.itens:
+        # Vidas dos Players que aparece nos cantos
+        for i in range(int(player1.vidas)):
+            screen.blit(imagem_coracaoreduzido, (30 + (i * 20), 590))
+        for i in range(int(player2.vidas)):
+            screen.blit(imagem_coracaoreduzido, (30 + (i * 20), 30))
+
+        # Balas dos Players que aparece nos cantos
+        for i in range(int(player1.balas)):
+            screen.blit(imagem_balaazul, (30 + (i * 10), 612))
+        for i in range(int(player2.balas)):
+            screen.blit(imagem_balaazul, (30 + (i * 10), 20))
+
+        if random.random() < 0.09:  # Probabilidade de aparecimento de itens conforme necessário
+            gerenciador_itens.gerar_item()
+            
+        for item in gerenciador_itens.itens: # Gerenciamento do que cada coletável faz
             if pygame.sprite.collide_rect(player1, item):
                 if item.name == "images/velocidade.png":
                     player1.velocidade_total += 5
@@ -134,13 +147,13 @@ def jogar():
             if pygame.sprite.collide_rect(player1, item):
                 if item.name == "images/coracao_coletavel.png":
                     player1.vidas_totais += 1
-                    if player1.vidas < 6:
+                    if player1.vidas < 4:
                         som_vida.play()
                         player1.vidas += 1
             if pygame.sprite.collide_rect(player2, item):
                 if item.name == "images/coracao_coletavel.png":
                     player2.vidas_totais += 1
-                    if player2.vidas < 6:
+                    if player2.vidas < 4:
                         som_vida.play()
                         player2.vidas += 1
             if pygame.sprite.collide_rect(player1, item):
@@ -159,28 +172,13 @@ def jogar():
         pygame.sprite.spritecollide(player1, gerenciador_itens.itens, True)
         pygame.sprite.spritecollide(player2, gerenciador_itens.itens, True)
 
-        # CONDIÇÃO DE VITÓRIA
+        # Condição de vitória
         if player1.vidas == 0:
             som_gameover.play()
             fim_de_jogo(player2.imagem)
         elif player2.vidas == 0:
             som_gameover.play()
             fim_de_jogo(player1.imagem)
-
-        for obstaculo in lista_obstaculos:
-            obstaculo.mostrar_obstaculo(screen)
-
-        # Vidas dos Players
-        for i in range(int(player1.vidas)):
-            screen.blit(imagem_coracaoreduzido, (30 + (i * 20), 590))
-        for i in range(int(player2.vidas)):
-            screen.blit(imagem_coracaoreduzido, (30 + (i * 20), 30))
-
-        # Balas dos Players
-        for i in range(int(player1.balas)):
-            screen.blit(imagem_balaazul, (30 + (i * 10), 612))
-        for i in range(int(player2.balas)):
-            screen.blit(imagem_balaazul, (30 + (i * 10), 20))
 
         gerenciador_itens.itens.update()
         gerenciador_itens.itens.draw(screen)
@@ -195,8 +193,7 @@ def jogar():
         pygame.display.update()
         screen.blit(mapa_background, (0, 0))
 
-screen = pygame.display.set_mode((600, 640))
-
+#FIM DO JOGO 
 def fim_de_jogo(winner_img):
     while True:
         pygame.display.set_caption('Fim de jogo')
@@ -229,7 +226,6 @@ def fim_de_jogo(winner_img):
         pygame.display.update()
         screen.blit(fundo, (0, 0))
 
-
-
+screen = pygame.display.set_mode((600, 640))
 menu_principal()
 

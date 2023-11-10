@@ -2,7 +2,6 @@ import pygame
 
 pygame.init()
 
-
 class Botao():
     # CONSTRUTOR DA CLASSE
     def __init__(self, imagem, posx, posy):

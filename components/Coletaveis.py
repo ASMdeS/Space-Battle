@@ -41,7 +41,6 @@ possiveis_posicoes_spawnaveis = [
     (141, 334)
 ]
 
-
 class ItemColecionavel(pygame.sprite.Sprite):
     def __init__(self, name, imagem):
         super().__init__()
@@ -54,7 +53,6 @@ class ItemColecionavel(pygame.sprite.Sprite):
         # Você pode adicionar lógica adicional aqui se os itens colecionáveis precisarem ser atualizados
         pass
 
-
 # Classe para gerenciar os itens colecionáveis
 class GerenciadorItensColecionaveis:
     def __init__(self):
@@ -65,7 +63,7 @@ class GerenciadorItensColecionaveis:
         num_itens_na_tela = len(self.itens)
 
         # Limite o número máximo de itens colecionáveis na tela a 8
-        if num_itens_na_tela < 5:
+        if num_itens_na_tela < 2:
             probabilidades = [10, 80, 10]
             tipos_itens = ["images/velocidade.png", "images/bala.png", "images/coracao_coletavel.png"]
             tipo_item = random.choices(tipos_itens, weights=probabilidades)[0]
