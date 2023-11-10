@@ -185,12 +185,12 @@ def jogar():
         gerenciador_itens.itens.update()
         gerenciador_itens.itens.draw(screen)
 
-        screen.blit(mensagem_balas_1_formatado,(500,550))
-        screen.blit(mensagem_balas_2_formatado,(500,20))
-        screen.blit(mensagem_vidas_1_formatado,(500,570))
-        screen.blit(mensagem_vidas_2_formatado,(500,40))
-        screen.blit(mensagem_velocidade_1_formatado,(500,590))
-        screen.blit(mensagem_velocidade_2_formatado,(500,60))
+        #screen.blit(mensagem_balas_1_formatado,(500,550))
+        #screen.blit(mensagem_balas_2_formatado,(500,20))
+        #screen.blit(mensagem_vidas_1_formatado,(500,570))
+        #screen.blit(mensagem_vidas_2_formatado,(500,40))
+        #screen.blit(mensagem_velocidade_1_formatado,(500,590))
+        #screen.blit(mensagem_velocidade_2_formatado,(500,60))
 
         pygame.display.update()
         screen.blit(mapa_background, (0, 0))
